@@ -1,15 +1,22 @@
 // pages/login.tsx
+import { inputFields } from '@/utils/InputfieldArray'
 import { useState, FormEvent } from 'react'
-
+import InputField from './inputfield'
+import SubmitButton from './submitbtn'
 export default function Login() {
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-
+  const [formValues, setFormValues] = useState({ email: '', password: '' })
+  const SliceInptuField = inputFields.slice(1, 3)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [id]: value,
+    }))
+  }
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // Add login functionality here
   }
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F8F9FA]">
       <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
@@ -17,50 +24,24 @@ export default function Login() {
           Login
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-dark-gray"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#007BFF]"
+          {SliceInptuField.map(({ id, type, label }) => (
+            <InputField
+              key={id}
+              id={id}
+              type={type}
+              label={label}
+              value={formValues[id as keyof typeof formValues]}
+              onChange={handleChange}
               required
             />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-dark-gray"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#007BFF]"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-[#007BFF] text-white rounded-md hover:bg-[#0056b3]"
-          >
-            Login
-          </button>
-          <div className="mt-4 text-center">
+          ))}
+          <SubmitButton text="Login" />
+          <div className="mt-4 text-right">
             <a href="/reset" className="text-[#007BFF] hover:underline">
               Forgot password?
             </a>
           </div>
-          <div className="mt-4 text-center">
+          <div className="mt-4 text-center text-black">
             <p>
               {`Don't`} have an account?{' '}
               <a href="/signup" className="text-[#007BFF] hover:underline">
