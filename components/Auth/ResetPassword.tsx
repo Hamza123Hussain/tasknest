@@ -1,14 +1,12 @@
 // pages/reset.js
 import { FormEvent, useState } from 'react'
-
+import SubmitButton from './submitbtn'
 export default function ResetPassword() {
   const [email, setEmail] = useState('')
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // Add password reset functionality here
   }
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F8F9FA]">
       <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
@@ -16,7 +14,7 @@ export default function ResetPassword() {
           Reset Password
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-6">
+          <div className="mb-6 text-black">
             <label
               htmlFor="email"
               className="block text-sm font-medium text-dark-gray"
@@ -32,13 +30,8 @@ export default function ResetPassword() {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-[#007BFF] text-white rounded-md hover:bg-[#0056b3]"
-          >
-            Reset Password
-          </button>
-          <div className="mt-4 text-center">
+          <SubmitButton text="Reset Password" />
+          <div className="mt-4 text-center text-black">
             <p>
               Remembered your password?{' '}
               <a href="/login" className="text-[#007BFF] hover:underline">
