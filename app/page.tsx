@@ -1,9 +1,13 @@
-import AddTask from '@/components/Task/AddTask'
+'use client'
+
+import TaskCreater from '@/components/Task/AddTask'
+import ShowTask from '@/components/Task/ShowTask'
 
 export default function Home() {
   return (
-    <div className="my-4 flex flex-col mx-auto bg-gray-900 rounded-lg  w-96">
-      <AddTask />
+    <div className="mt-4 flex flex-col bg-gray-900 rounded-lg p-4">
+      <TaskCreater />
+      <ShowTask />
     </div>
   )
 }
