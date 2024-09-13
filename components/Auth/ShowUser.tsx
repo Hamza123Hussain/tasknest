@@ -10,7 +10,7 @@ const ShowUser = () => {
   const Dispatch = useDispatch()
   const Router = useRouter()
   const SignedOut = async () => {
-    // const Data = await signOut()
+    const Data = await signOut()
     Router.push('/login')
     Dispatch(clearUserData())
   }

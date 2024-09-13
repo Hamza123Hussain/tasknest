@@ -3,7 +3,7 @@ import { ApiUrl } from '@/utils/SignUpInterface'
 import axios from 'axios'
 export const signOut = async () => {
   try {
-    const response = await axios.post<boolean>(`${ApiUrl}api/Auth/Signout`)
+    const response = await axios.get<boolean>(`${ApiUrl}api/Auth/Signout`)
     if (response.status === 200) {
       return true
       // Handle success, such as redirecting to the login page
