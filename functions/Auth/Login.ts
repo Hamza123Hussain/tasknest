@@ -12,7 +12,7 @@ export const login = async (
     )
 
     if (response.status === 200) {
-      console.log('User logged in successfully:', response.data)
+      //   console.log('User logged in successfully:', response.data)
       return response.data
     }
   } catch (error) {

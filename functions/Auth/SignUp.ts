@@ -17,7 +17,7 @@ export const signUp = async (
       formData
     )
     if (response.status === 200) {
-      console.log('User registered successfully:', response.data)
+      //   console.log('User registered successfully:', response.data)
       return response.data // Handle success, return the user data
     } else {
       console.error('User registration failed:', response.data)
