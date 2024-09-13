@@ -1,20 +1,17 @@
 'use client'
-
-import { AddTask } from '@/utils/Redux/Slices/TodoSlice'
+import { NewElement } from '@/utils/Redux/Slices/TODO/Slice/TodoSlice'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-
 const TaskCreater = () => {
   const [title, setTitle] = useState('')
   const dispatch = useDispatch()
 
   const handleAddTask = () => {
     if (title.trim()) {
-      dispatch(AddTask(title))
+      dispatch(NewElement(title))
       setTitle('') // Clear the input field after adding the task
     }
   }
-
   return (
     <div className="mt-4 flex flex-col bg-[#007BFF] rounded-lg p-4 shadow-lg">
       <h2 className="text-white font-bold text-2xl">Create New Task</h2>
@@ -31,7 +28,6 @@ const TaskCreater = () => {
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
-
       <div className="mt-4 flex justify-end">
         <button
           onClick={handleAddTask}
@@ -44,5 +40,4 @@ const TaskCreater = () => {
     </div>
   )
 }
-
 export default TaskCreater

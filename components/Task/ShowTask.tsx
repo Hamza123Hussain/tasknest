@@ -1,5 +1,5 @@
 'use client'
-import { RemoveTask } from '@/utils/Redux/Slices/TodoSlice'
+import { RemoveElement } from '@/utils/Redux/Slices/TODO/Slice/TodoSlice'
 import { RootState } from '@/utils/Redux/Store'
 import React from 'react'
 import { FaRegTrashAlt } from 'react-icons/fa'
@@ -19,7 +19,7 @@ const ShowTask = () => {
           <span> {task.Text}</span>
           <FaRegTrashAlt
             className=" text-red-700 cursor-pointer"
-            onClick={() => Dispatch(RemoveTask(task.id))}
+            onClick={() => Dispatch(RemoveElement(task.id))}
           />
         </div>
       ))}
