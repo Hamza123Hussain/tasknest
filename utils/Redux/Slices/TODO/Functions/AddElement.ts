@@ -2,7 +2,6 @@
 import { TodoState, Todo } from '@/utils/TodoInterface'
 import { nanoid } from '@reduxjs/toolkit'
 import { saveToLocalStorage } from './SaveToLocal'
-
 export const addTodoReducer = (
   state: TodoState,
   action: { payload: string }

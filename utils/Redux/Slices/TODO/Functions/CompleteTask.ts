@@ -1,6 +1,5 @@
 import { TodoState } from '@/utils/TodoInterface'
 import { saveToLocalStorage } from './SaveToLocal'
-
 export const toggleTaskCompletionReducer = (
   state: TodoState,
   action: { payload: { todoId: string; taskId: string } }

@@ -1,7 +1,6 @@
 import { TodoState } from '@/utils/TodoInterface'
 import { nanoid } from '@reduxjs/toolkit'
 import { saveToLocalStorage } from './SaveToLocal'
-
 export const addTaskToTodoReducer = (
   state: TodoState,
   action: { payload: { todoId: string; taskText: string } }

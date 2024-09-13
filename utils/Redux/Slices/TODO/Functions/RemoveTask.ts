@@ -1,6 +1,5 @@
 import { TodoState } from '@/utils/TodoInterface'
 import { saveToLocalStorage } from './SaveToLocal'
-
 export const removeTodoReducer = (
   state: TodoState,
   action: { payload: string }
