@@ -1,10 +1,10 @@
 // utils/Redux/Slices/TodoSlice.ts
 import { createSlice } from '@reduxjs/toolkit'
 import { TodoState } from '@/utils/TodoInterface'
-import { addTodoReducer } from '../Functions/AddElement'
-import { addTaskToTodoReducer } from '../Functions/AddNewTask'
-import { removeTodoReducer } from '../Functions/RemoveTask'
-import { toggleTaskCompletionReducer } from '../Functions/CompleteTask'
+import { AddTodo } from '../Functions/AddElement'
+import { AddTaskToTodo } from '../Functions/AddNewTask'
+import { ToggleTaskCompletion } from '../Functions/CompleteTask'
+import { RemoveTodo } from '../Functions/RemoveTask'
 const loadFromLocalStorage = (): TodoState['todo'] => {
   const savedTodos = localStorage.getItem('todos')
   return savedTodos ? JSON.parse(savedTodos) : []
@@ -16,12 +16,13 @@ export const TodoSlice = createSlice({
   name: 'TodoSlice',
   initialState,
   reducers: {
-    AddTodo: addTodoReducer,
-    AddTaskToTodo: addTaskToTodoReducer,
-    RemoveTodo: removeTodoReducer,
-    ToggleTaskCompletion: toggleTaskCompletionReducer,
+    NewElement: AddTodo,
+    NewTask: AddTaskToTodo,
+    CompleteTask: ToggleTaskCompletion,
+    RemoveElement: RemoveTodo,
   },
 })
-export const { AddTodo, AddTaskToTodo, RemoveTodo, ToggleTaskCompletion } =
+export const { NewElement, NewTask, CompleteTask, RemoveElement } =
   TodoSlice.actions
+
 export const TodoReducer = TodoSlice.reducer
