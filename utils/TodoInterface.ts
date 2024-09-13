@@ -10,7 +10,7 @@ export interface TodoState {
   todo: Todo[]
 }
 
-interface Task {
+export interface Task {
   ID: string
   Text: string
   ISDone: boolean
