@@ -2,9 +2,17 @@
 export interface Todo {
   id: string
   Text: string
+  Tasks: Task[]
 }
 
 // Define the state type
 export interface TodoState {
   todo: Todo[]
+}
+
+interface Task {
+  ID: string
+  Text: string
+  ISDone: boolean
+  CreatedAt: Date
 }
