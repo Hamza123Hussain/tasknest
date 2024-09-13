@@ -1,7 +1,10 @@
-import { CompleteTask } from '@/utils/Redux/Slices/TODO/Slice/TodoSlice'
+import {
+  CompleteTask,
+  RemoveATask,
+} from '@/utils/Redux/Slices/TODO/Slice/TodoSlice'
 import { Task } from '@/utils/TodoInterface'
 import React from 'react'
-import { FaCheckCircle, FaRegCircle } from 'react-icons/fa'
+import { FaCheckCircle, FaRegCircle, FaTrash } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 
 const TaskCard = ({ task, ID }: { task: Task; ID: string }) => {
@@ -21,15 +24,23 @@ const TaskCard = ({ task, ID }: { task: Task; ID: string }) => {
         >
           {task.Text}
         </span>
-        <button
-          onClick={() =>
-            dispatch(CompleteTask({ todoId: ID, taskId: task.ID }))
-          }
-          className="text-green-500 hover:text-green-600 ml-2"
-          aria-label="Toggle Task Completion"
-        >
-          {task.ISDone ? <FaCheckCircle /> : <FaRegCircle />}
-        </button>
+        <div className=" flex justify-between items-center gap-3">
+          <button
+            onClick={() =>
+              dispatch(CompleteTask({ todoId: ID, taskId: task.ID }))
+            }
+            className="text-green-500 hover:text-green-600 ml-2"
+            aria-label="Toggle Task Completion"
+          >
+            {task.ISDone ? <FaCheckCircle /> : <FaRegCircle />}
+          </button>
+          <FaTrash
+            className=" text-red-600 cursor-pointer"
+            onClick={() =>
+              dispatch(RemoveATask({ todoId: ID, taskID: task.ID }))
+            }
+          />
+        </div>
       </div>
       <div className="text-gray-600 text-sm mt-2">
         <p>Created At: {new Date(task.CreatedAt).toLocaleString()}</p>
