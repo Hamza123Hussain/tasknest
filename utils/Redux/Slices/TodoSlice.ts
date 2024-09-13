@@ -1,21 +1,15 @@
+import { Todo, TodoState } from '@/utils/TodoInterface'
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
-
-// Define the type for each Todo item
-interface Todo {
-  id: string
-  Text: string
+const loadFromLocalStorage = (): Todo[] => {
+  const savedTodos = localStorage.getItem('todos')
+  return savedTodos ? JSON.parse(savedTodos) : []
 }
-
-// Define the state type
-interface TodoState {
-  todo: Todo[]
+const saveToLocalStorage = (todos: Todo[]) => {
+  localStorage.setItem('todos', JSON.stringify(todos))
 }
-
-// Define the initial state with type
 const initialState: TodoState = {
-  todo: [{ id: nanoid(), Text: 'MY NAME IS HAMZA' }],
+  todo: loadFromLocalStorage(),
 }
-
 export const TodoSlice = createSlice({
   name: 'TodoSlice',
   initialState,
@@ -23,12 +17,13 @@ export const TodoSlice = createSlice({
     AddTask: (state, action: PayloadAction<string>) => {
       const NewElement = { id: nanoid(), Text: action.payload }
       state.todo.push(NewElement)
+      saveToLocalStorage(state.todo) // Save updated todo list to localStorage
     },
     RemoveTask: (state, action: PayloadAction<string>) => {
       state.todo = state.todo.filter((element) => element.id !== action.payload)
+      saveToLocalStorage(state.todo) // Save updated todo list to localStorage
     },
   },
 })
-
 export const { AddTask, RemoveTask } = TodoSlice.actions
 export const TodoReducer = TodoSlice.reducer
