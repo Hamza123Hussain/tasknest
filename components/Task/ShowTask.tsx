@@ -8,9 +8,15 @@ const ShowTask = () => {
   const tasks = useSelector((state: RootState) => state.TodoReducer.todo)
 
   return (
-    <div>
+    <div className="bg-[#F8F9FA] p-6 rounded-lg shadow-md">
+      <h2 className="text-[#007BFF] text-2xl font-bold mb-4">Tasks</h2>
       {tasks.map((task) => (
-        <div key={task.id}>{task.Text}</div>
+        <div
+          key={task.id}
+          className="bg-white text-gray-800 p-3 my-2 rounded-md border border-[#007BFF] shadow-sm"
+        >
+          {task.Text}
+        </div>
       ))}
     </div>
   )
