@@ -12,3 +12,11 @@ export interface formvalues {
   password: string
   confirmPassword: string
 }
+
+export interface UserData {
+  createdAt: string
+  email: string
+  imageUrl: string
+  name: string
+  _id: string
+}
