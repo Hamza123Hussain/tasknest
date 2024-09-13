@@ -3,6 +3,7 @@ import { inputFields } from '@/utils/InputfieldArray'
 import { useState, FormEvent } from 'react'
 import InputField from './inputfield'
 import SubmitButton from './submitbtn'
+import { login } from '@/functions/Auth/Login'
 export default function Login() {
   const [formValues, setFormValues] = useState({ email: '', password: '' })
   const SliceInptuField = inputFields.slice(1, 3)
@@ -13,9 +14,10 @@ export default function Login() {
       [id]: value,
     }))
   }
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Add login functionality here
+    const Data = await login(formValues.email, formValues.password)
+    console.log('User LOgged In', Data)
   }
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F8F9FA]">

@@ -4,8 +4,10 @@ import InputField from './inputfield'
 import FileUpload from './filefield'
 import SubmitButton from './submitbtn'
 import { inputFields } from '@/utils/InputfieldArray'
+import { signUp } from '@/functions/Auth/SignUp'
+import { formvalues } from '@/utils/SignUpInterface'
 export default function SignupForm() {
-  const [formValues, setFormValues] = useState({
+  const [formValues, setFormValues] = useState<formvalues>({
     username: '',
     email: '',
     password: '',
@@ -24,10 +26,10 @@ export default function SignupForm() {
       setImage(e.target.files[0])
     }
   }
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Add signup functionality here
-    // Handle image upload and form submission
+    const Data = await signUp(formValues, image)
+    console.log('User Created ', Data)
   }
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F8F9FA]">
