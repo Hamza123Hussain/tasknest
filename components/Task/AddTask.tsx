@@ -1,6 +1,7 @@
-import React from 'react'
-
+'use client'
+import React, { useState } from 'react'
 const AddTask = () => {
+  const [title, settitle] = useState('')
   return (
     <div className="mt-4 flex flex-col bg-gray-900 rounded-lg p-4">
       <h2 className="text-white font-bold text-2xl">Task Creater</h2>
@@ -10,9 +11,11 @@ const AddTask = () => {
           Title
         </label>
         <input
+          value={title}
           placeholder="Enter a title title your dream"
-          className="w-full bg-gray-800 rounded-md border-gray-700 text-white px-2 py-1"
+          className="w-full bg-gray-800 rounded-md my-2 border-gray-700 text-white px-2 py-1"
           type="text"
+          onChange={(e) => settitle(e.target.value)}
         />
       </div>
 
