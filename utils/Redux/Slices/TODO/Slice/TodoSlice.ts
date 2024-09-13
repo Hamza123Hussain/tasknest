@@ -5,6 +5,7 @@ import { AddTodo } from '../Functions/AddElement'
 import { AddTaskToTodo } from '../Functions/AddNewTask'
 import { ToggleTaskCompletion } from '../Functions/CompleteTask'
 import { RemoveTodo } from '../Functions/RemoveTask'
+import { RemoveTask } from '../Functions/RemoveATask'
 const loadFromLocalStorage = (): TodoState['todo'] => {
   const savedTodos = localStorage.getItem('todos')
   return savedTodos ? JSON.parse(savedTodos) : []
@@ -20,9 +21,10 @@ export const TodoSlice = createSlice({
     NewTask: AddTaskToTodo,
     CompleteTask: ToggleTaskCompletion,
     RemoveElement: RemoveTodo,
+    RemoveATask: RemoveTask,
   },
 })
-export const { NewElement, NewTask, CompleteTask, RemoveElement } =
+export const { NewElement, NewTask, CompleteTask, RemoveElement, RemoveATask } =
   TodoSlice.actions
 
 export const TodoReducer = TodoSlice.reducer
