@@ -1,6 +1,7 @@
 import { TodoState } from '@/utils/TodoInterface'
 import { nanoid } from '@reduxjs/toolkit'
 import { saveToLocalStorage } from './SaveToLocal'
+
 export const AddTaskToTodo = (
   state: TodoState,
   action: { payload: { todoId: string; taskText: string } }
@@ -9,6 +10,11 @@ export const AddTaskToTodo = (
   const todo = state.todo.find((t) => t.id === todoId)
 
   if (todo) {
+    // Ensure that todo.Tasks is initialized as an array
+    if (!todo.Tasks) {
+      todo.Tasks = []
+    }
+
     const newTask = {
       ID: nanoid(),
       Text: taskText,
