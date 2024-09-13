@@ -4,9 +4,13 @@ import { useState, FormEvent } from 'react'
 import InputField from './inputfield'
 import SubmitButton from './submitbtn'
 import { login } from '@/functions/Auth/Login'
+import { useDispatch } from 'react-redux'
+import { UserMade } from '@/utils/Redux/Slices/User/UserSlice'
+
 export default function Login() {
   const [formValues, setFormValues] = useState({ email: '', password: '' })
   const SliceInptuField = inputFields.slice(1, 3)
+  const Dispatch = useDispatch()
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
     setFormValues((prevValues) => ({
@@ -18,6 +22,7 @@ export default function Login() {
     e.preventDefault()
     const Data = await login(formValues.email, formValues.password)
     console.log('User LOgged In', Data)
+    Dispatch(UserMade(Data))
   }
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F8F9FA]">
