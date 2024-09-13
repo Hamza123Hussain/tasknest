@@ -1,19 +1,31 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit'
+import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState = { todo: [{ id: nanoid(), Text: 'MY NAME IS HAMZA' }] }
+// Define the type for each Todo item
+interface Todo {
+  id: string
+  Text: string
+}
+
+// Define the state type
+interface TodoState {
+  todo: Todo[]
+}
+
+// Define the initial state with type
+const initialState: TodoState = {
+  todo: [{ id: nanoid(), Text: 'MY NAME IS HAMZA' }],
+}
 
 export const TodoSlice = createSlice({
   name: 'TodoSlice',
   initialState,
   reducers: {
-    AddTask: (state, action) => {
+    AddTask: (state, action: PayloadAction<string>) => {
       const NewElement = { id: nanoid(), Text: action.payload }
       state.todo.push(NewElement)
     },
-    RemoveTask: (state, action) => {
-      state.todo = state.todo.filter((element) => {
-        element.id !== action.payload
-      })
+    RemoveTask: (state, action: PayloadAction<string>) => {
+      state.todo = state.todo.filter((element) => element.id !== action.payload)
     },
   },
 })
