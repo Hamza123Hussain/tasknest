@@ -28,8 +28,8 @@ export default function SignupForm() {
   }
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const Data = await signUp(formValues, image)
-    console.log('User Created ', Data)
+    await signUp(formValues, image)
+    // console.log('User Created ', Data)
   }
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F8F9FA]">
