@@ -1,10 +1,11 @@
+import { ApiUrl } from '@/utils/SignUpInterface'
 import axios from 'axios'
 
-export const addTask = async (elementId: string, task: string) => {
+export const addTask = async (elementId: string, text: string) => {
   try {
-    const response = await axios.post('/api/task/add', {
-      elementId: elementId,
-      task: task, // task object should contain properties like ID, Text, ISDone, etc.
+    const response = await axios.post(`${ApiUrl}api/Task/MakeTask`, {
+      elementId, // The ID of the element you want to add the task to
+      text, // The text of the task
     })
     console.log('Task added:', response.data)
     return response.data
