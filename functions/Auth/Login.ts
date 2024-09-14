@@ -12,14 +12,17 @@ export const login = async (
     )
 
     if (response.status === 200) {
-      //   console.log('User logged in successfully:', response.data)
-      return response.data
+      return response.data // Return user data if login is successful
     }
   } catch (error) {
-    // Ensure proper error handling
     if (axios.isAxiosError(error)) {
-      console.error('Axios error during login:', error.message)
+      // Handle Axios-specific error
+      console.error(
+        'Axios error during login:',
+        error.response?.data.message || error.message
+      )
     } else {
+      // Handle other types of errors (just in case)
       console.error('Unexpected error during login:', (error as Error).message)
     }
   }
