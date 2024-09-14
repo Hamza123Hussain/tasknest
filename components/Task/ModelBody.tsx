@@ -1,33 +1,46 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NewElement, NewTask } from '@/utils/Redux/Slices/TODO/Slice/TodoSlice'
-
-interface ModalBodyProps {
-  onClose: () => void // Function to close the modal
-  onSubmitType: string // Prop to determine which function to call
-  todoId?: string // Optional todoId for adding a task
-}
-
+import { nanoid } from '@reduxjs/toolkit'
+import { ModalBodyProps } from '@/utils/TodoInterface'
+import { RootState } from '@/utils/Redux/Store'
+import { addElement } from '@/functions/Element/AddElement'
+import { addTask } from '@/functions/Task/CreateTask'
 const ModalBody: React.FC<ModalBodyProps> = ({
   onClose,
   onSubmitType,
   todoId,
 }) => {
+  console.log('IDDD', todoId)
+  const User = useSelector((state: RootState) => state.UserReducer)
   const [title, setTitle] = useState<string>('') // State for the task or element title
   const dispatch = useDispatch()
+  const handleAdd = async () => {
+    console.log('Title:', title)
+    console.log('On Submit Type:', onSubmitType)
+    console.log('Todo ID:', typeof todoId)
 
-  const handleAdd = () => {
     if (title.trim()) {
       if (onSubmitType === 'element') {
-        dispatch(NewElement(title)) // Dispatch the NewElement action
-      } else if (onSubmitType === 'task' && todoId) {
-        dispatch(NewTask({ todoId, taskText: title })) // Dispatch the NewTask action
+        const Payload = { id: nanoid(), text: title, userEmail: User.email }
+        dispatch(NewElement(Payload)) // Dispatch the NewElement action
+        const Data = await addElement(Payload.text, Payload.userEmail)
+        if (Data) {
+          console.log('New Element:', Data)
+        }
+      } else if (onSubmitType === 'task') {
+        if (!todoId) {
+          console.error('Task requires a valid todoId')
+          return
+        }
+        const Data = await addTask(todoId, title)
+        console.log('Data from addTask:', Data)
+        dispatch(NewTask({ todoId, taskText: title }))
       }
       setTitle('') // Clear the input field
       onClose() // Close the modal
     }
   }
-
   return (
     <>
       <div className="mb-4">
@@ -47,7 +60,6 @@ const ModalBody: React.FC<ModalBodyProps> = ({
           }
         />
       </div>
-
       <div className="flex justify-end space-x-2">
         <button
           onClick={onClose}
@@ -65,5 +77,4 @@ const ModalBody: React.FC<ModalBodyProps> = ({
     </>
   )
 }
-
 export default ModalBody
