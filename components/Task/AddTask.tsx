@@ -1,43 +1,21 @@
 'use client'
-import { NewElement } from '@/utils/Redux/Slices/TODO/Slice/TodoSlice'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import TaskModal from './TaskModal'
+
 const TaskCreater = () => {
-  const [title, setTitle] = useState('')
-  const dispatch = useDispatch()
+  const [isModalOpen, setModalOpen] = useState(false)
 
-  const handleAddTask = () => {
-    if (title.trim()) {
-      dispatch(NewElement(title))
-      setTitle('') // Clear the input field after adding the task
-    }
-  }
   return (
-    <div className="mt-4 flex flex-col bg-[#007BFF] rounded-lg p-4 shadow-lg">
-      <h2 className="text-white font-bold text-2xl">Create New Task</h2>
+    <>
+      <button
+        onClick={() => setModalOpen(true)}
+        className="px-4 py-2 rounded-md bg-[#007BFF] text-white hover:bg-[#0056b3]"
+      >
+        Create Task
+      </button>
 
-      <div className="mt-4">
-        <label className="text-white" htmlFor="title">
-          Title
-        </label>
-        <input
-          value={title}
-          placeholder="Enter a title"
-          className="w-full bg-[#F8F9FA] rounded-md my-2 border border-[#0056b3] text-gray-800 px-2 py-1"
-          type="text"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
-      <div className="mt-4 flex justify-end">
-        <button
-          onClick={handleAddTask}
-          className="bg-teal-500 text-white rounded-md px-4 py-1 hover:bg-teal-600"
-          type="button"
-        >
-          Add Task
-        </button>
-      </div>
-    </div>
+      <TaskModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+    </>
   )
 }
 export default TaskCreater
