@@ -1,8 +1,9 @@
+import { ApiUrl } from '@/utils/SignUpInterface'
 import axios from 'axios'
 
 export const getAllUserElements = async (userEmail: string) => {
   try {
-    const response = await axios.get('/api/element/get-all', {
+    const response = await axios.get(`${ApiUrl}api/Element/GetUserElements`, {
       params: { UserEmail: userEmail },
     })
     console.log('User elements:', response.data)
