@@ -13,8 +13,8 @@ const Navbar: React.FC = () => {
     router.push('/login')
   }
   return (
-    <nav className="bg-[#007BFF] text-white p-4">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className="bg-[#007BFF] text-white py-1">
+      <div className=" px-2 mx-auto flex justify-between items-center sm:flex-row flex-col gap-5">
         <a href="/" className="text-2xl font-bold flex items-center gap-2">
           <Image
             className=" rounded-full bg-transparent"
