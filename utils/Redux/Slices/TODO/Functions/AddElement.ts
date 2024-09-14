@@ -7,6 +7,7 @@ export const AddTodo = (state: TodoState, action: { payload: string }) => {
     id: nanoid(),
     Text: action.payload,
     Tasks: [],
+    CreatedAt: new Date(),
   }
   state.todo.push(newTodo)
   saveToLocalStorage(state.todo)
