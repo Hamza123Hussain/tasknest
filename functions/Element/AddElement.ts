@@ -1,8 +1,9 @@
+import { ApiUrl } from '@/utils/SignUpInterface'
 import axios from 'axios'
 
 export const addElement = async (text: string, userEmail: string) => {
   try {
-    const response = await axios.post('/api/element/add', {
+    const response = await axios.post(`${ApiUrl}api/Element/MakeElement`, {
       Text: text,
       UserEmail: userEmail,
     })
