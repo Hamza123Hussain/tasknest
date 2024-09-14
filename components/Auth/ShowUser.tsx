@@ -11,12 +11,12 @@ const ShowUser = () => {
   const Router = useRouter()
   const SignedOut = async () => {
     const Data = await signOut()
-    Router.push('/login')
+    if (Data) Router.push('/login')
     Dispatch(clearUserData())
   }
   return (
-    <div className=" flex items-center gap-2  ">
-      <li className="flex items-center space-x-2  bg-[#FFC107] hover:bg-[#e0a800] rounded-lg px-2 ">
+    <div className=" flex items-center gap-2 rounded-lg bg-[#FFC107] hover:bg-[#e0a800]  px-4 py-1   ">
+      <li className="flex items-center space-x-1   ">
         {User.imageUrl && (
           <Image
             src={User.imageUrl}
