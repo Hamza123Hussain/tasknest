@@ -16,3 +16,8 @@ export interface Task {
   ISDone: boolean
   CreatedAt: Date
 }
+
+export interface TaskModalProps {
+  isOpen: boolean
+  onClose: () => void
+}
