@@ -5,9 +5,15 @@ import { FaRegTrashAlt } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import TaskCard from './TaskCard'
 import TaskModal from './TaskModal'
+import { deleteElement } from '@/functions/Element/DeleteElement'
 const MainCard = ({ todo }: { todo: Todo }) => {
   const dispatch = useDispatch()
   const [isModalOpen, setModalOpen] = useState(false)
+  const Deleteme = async () => {
+    dispatch(RemoveElement(todo.id))
+    const Data = await deleteElement(todo.id)
+    if (Data) alert('Item gone')
+  }
   return (
     <div key={todo.id} className=" bg-white p-4 rounded-lg ">
       <div className=" flex items-center justify-between">
@@ -17,8 +23,8 @@ const MainCard = ({ todo }: { todo: Todo }) => {
 
         <FaRegTrashAlt
           className="text-red-700 cursor-pointer hover:text-red-800"
-          onClick={() => dispatch(RemoveElement(todo.id))}
           aria-label="Remove Todo"
+          onClick={Deleteme}
         />
       </div>
       {todo.Tasks?.map((task: Task) => (
