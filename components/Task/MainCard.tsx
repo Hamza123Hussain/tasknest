@@ -9,11 +9,12 @@ const MainCard = ({ todo }: { todo: Todo }) => {
   const dispatch = useDispatch()
   const [isModalOpen, setModalOpen] = useState(false)
   return (
-    <div key={todo.id} className="mb-6">
+    <div key={todo.id} className=" bg-white p-4 rounded-lg ">
       <div className=" flex items-center justify-between">
         <h1 className="text-[#007BFF] text-4xl font-semibold mb-2">
           {todo.Text}
         </h1>
+
         <FaRegTrashAlt
           className="text-red-700 cursor-pointer hover:text-red-800"
           onClick={() => dispatch(RemoveElement(todo.id))}
@@ -28,10 +29,15 @@ const MainCard = ({ todo }: { todo: Todo }) => {
           onClick={() => setModalOpen(true)}
           className="px-4 py-2 rounded-md bg-[#007BFF] text-white hover:bg-[#0056b3]"
         >
-          Create Task
+          Create New Task
         </button>
-
-        <TaskModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+        <TaskModal
+          ID={todo.id}
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          Name="Create New Task"
+          onSubmitType="task"
+        />
       </div>
     </div>
   )
