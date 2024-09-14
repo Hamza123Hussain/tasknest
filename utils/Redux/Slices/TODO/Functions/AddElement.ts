@@ -1,11 +1,12 @@
-// utils/Redux/Reducers/todoReducers.ts
 import { TodoState, Todo } from '@/utils/TodoInterface'
-import { nanoid } from '@reduxjs/toolkit'
 import { saveToLocalStorage } from './SaveToLocal'
-export const AddTodo = (state: TodoState, action: { payload: string }) => {
+export const AddTodo = (
+  state: TodoState,
+  action: { payload: { id: string; text: string; userEmail: string } }
+) => {
   const newTodo: Todo = {
-    id: nanoid(),
-    Text: action.payload,
+    id: action.payload.id, // Use the id passed in the payload
+    Text: action.payload.text,
     Tasks: [],
     CreatedAt: new Date(),
   }
