@@ -6,6 +6,7 @@ import SubmitButton from './submitbtn'
 import { inputFields } from '@/utils/InputfieldArray'
 import { signUp } from '@/functions/Auth/SignUp'
 import { formvalues } from '@/utils/SignUpInterface'
+import { useRouter } from 'next/navigation'
 export default function SignupForm() {
   const [formValues, setFormValues] = useState<formvalues>({
     username: '',
@@ -21,6 +22,7 @@ export default function SignupForm() {
       [id]: value,
     }))
   }
+  const Router = useRouter()
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setImage(e.target.files[0])
@@ -28,8 +30,10 @@ export default function SignupForm() {
   }
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await signUp(formValues, image)
-    // console.log('User Created ', Data)
+    const Data = await signUp(formValues, image)
+    if (Data) {
+      Router.push('/login')
+    }
   }
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F8F9FA]">
