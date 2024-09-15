@@ -15,7 +15,7 @@ const MainCard = ({ todo }: { todo: Todo }) => {
     if (Data) alert('Item gone')
   }
   return (
-    <div key={todo._id} className=" bg-white p-4 rounded-lg ">
+    <div className=" bg-white p-4 rounded-lg ">
       <div className=" flex items-center justify-between">
         <h1 className="text-[#007BFF] text-4xl font-semibold mb-2">
           {todo.Text}
@@ -27,8 +27,8 @@ const MainCard = ({ todo }: { todo: Todo }) => {
           onClick={Deleteme}
         />
       </div>
-      {todo.Tasks?.map((task: Task) => (
-        <TaskCard task={task} key={task.ID} ID={todo._id} />
+      {todo.Tasks?.map((task: Task, index) => (
+        <TaskCard task={task} key={index} ID={todo._id} />
       ))}
       <div className="relative mt-6">
         <button
