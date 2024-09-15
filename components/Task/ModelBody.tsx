@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NewElement, NewTask } from '@/utils/Redux/Slices/TODO/Slice/TodoSlice'
-import { nanoid } from '@reduxjs/toolkit'
 import { ModalBodyProps } from '@/utils/TodoInterface'
 import { RootState } from '@/utils/Redux/Store'
 import { addElement } from '@/functions/Element/AddElement'
@@ -11,36 +10,45 @@ const ModalBody: React.FC<ModalBodyProps> = ({
   onSubmitType,
   todoId,
 }) => {
-  console.log('IDDD', todoId)
   const User = useSelector((state: RootState) => state.UserReducer)
   const [title, setTitle] = useState<string>('') // State for the task or element title
   const dispatch = useDispatch()
   const handleAdd = async () => {
-    console.log('Title:', title)
-    console.log('On Submit Type:', onSubmitType)
-    console.log('Todo ID:', typeof todoId)
-
     if (title.trim()) {
-      if (onSubmitType === 'element') {
-        const Payload = { id: nanoid(), text: title, userEmail: User.email }
-        dispatch(NewElement(Payload)) // Dispatch the NewElement action
-        const Data = await addElement(Payload.text, Payload.userEmail)
-        if (Data) {
-          console.log('New Element:', Data)
+      try {
+        if (onSubmitType === 'element') {
+          // Create the element in the backend
+          const Data = await addElement(title, User.email)
+
+          // Ensure the backend returns the element with an ID
+          if (Data && Data._id) {
+            const Payload = { id: Data._id, text: title, userEmail: User.email }
+            // Dispatch the element with the correct ID from the backend
+            dispatch(NewElement(Payload))
+            console.log('New Element created with ID:', Data._id)
+          }
+        } else if (onSubmitType === 'task') {
+          if (!todoId) {
+            console.error('Task requires a valid todoId')
+            return
+          }
+          // Create the task in the backend
+          const taskData = await addTask(todoId, title)
+
+          // Dispatch the new task to the Redux store
+          if (taskData) {
+            dispatch(NewTask({ todoId, taskText: title }))
+            console.log('New Task added to todoId:', todoId)
+          }
         }
-      } else if (onSubmitType === 'task') {
-        if (!todoId) {
-          console.error('Task requires a valid todoId')
-          return
-        }
-        const Data = await addTask(todoId, title)
-        console.log('Data from addTask:', Data)
-        dispatch(NewTask({ todoId, taskText: title }))
+        setTitle('') // Clear the input field
+        onClose() // Close the modal
+      } catch (error) {
+        console.error('Error adding element/task:', error)
       }
-      setTitle('') // Clear the input field
-      onClose() // Close the modal
     }
   }
+
   return (
     <>
       <div className="mb-4">
