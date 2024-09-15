@@ -7,6 +7,6 @@ export const RemoveTask = (
   const { todoId, taskID } = action.payload
   const todo = state.todo.find((t) => t._id === todoId)
   if (todo) {
-    todo.Tasks = todo.Tasks.filter((task) => task.ID !== taskID)
+    todo.Tasks = todo.Tasks.filter((task) => task._id !== taskID)
   }
 }
