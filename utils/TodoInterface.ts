@@ -1,6 +1,6 @@
 // Define the type for each Todo item
 export interface Todo {
-  id: string
+  _id: string
   Text: string
   Tasks: Task[]
   CreatedAt: Date
@@ -15,7 +15,7 @@ export interface Task {
   ID: string
   Text: string
   ISDone: boolean
-  CreatedAt: Date
+  CreatedAt: string
 }
 
 export interface TaskModalProps {
