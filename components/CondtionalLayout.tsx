@@ -8,11 +8,9 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
   const user = useSelector((state: RootState) => state.UserReducer)
   const isLoggedIn = !!user._id
-  const authPages = ['/login', '/signup', '/reset']
-
   useEffect(() => {
+    const authPages = ['/login', '/signup', '/reset']
     if (isLoggedIn) {
-      // If logged in, redirect from auth pages to a default page (e.g., dashboard)
       if (authPages.includes(pathname)) {
         router.push('/') // Redirect to a logged-in page
       }
@@ -22,9 +20,8 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
         router.push('/login') // Redirect to login page
       }
     }
-  }, [isLoggedIn, pathname, authPages, router])
+  }, [isLoggedIn, pathname, router])
 
   return <>{children}</>
 }
-
 export default ConditionalLayout
