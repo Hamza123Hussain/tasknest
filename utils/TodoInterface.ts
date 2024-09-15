@@ -12,7 +12,7 @@ export interface TodoState {
 }
 
 export interface Task {
-  ID: string
+  _id: string
   Text: string
   ISDone: boolean
   CreatedAt: string
