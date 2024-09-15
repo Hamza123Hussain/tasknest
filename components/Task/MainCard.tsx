@@ -10,12 +10,12 @@ const MainCard = ({ todo }: { todo: Todo }) => {
   const dispatch = useDispatch()
   const [isModalOpen, setModalOpen] = useState(false)
   const Deleteme = async () => {
-    dispatch(RemoveElement(todo.id))
-    const Data = await deleteElement(todo.id)
+    dispatch(RemoveElement(todo._id))
+    const Data = await deleteElement(todo._id)
     if (Data) alert('Item gone')
   }
   return (
-    <div key={todo.id} className=" bg-white p-4 rounded-lg ">
+    <div key={todo._id} className=" bg-white p-4 rounded-lg ">
       <div className=" flex items-center justify-between">
         <h1 className="text-[#007BFF] text-4xl font-semibold mb-2">
           {todo.Text}
@@ -28,7 +28,7 @@ const MainCard = ({ todo }: { todo: Todo }) => {
         />
       </div>
       {todo.Tasks?.map((task: Task) => (
-        <TaskCard task={task} key={task.ID} ID={todo.id} />
+        <TaskCard task={task} key={task.ID} ID={todo._id} />
       ))}
       <div className="relative mt-6">
         <button
@@ -38,7 +38,7 @@ const MainCard = ({ todo }: { todo: Todo }) => {
           Create New Task
         </button>
         <TaskModal
-          ID={todo.id}
+          ID={todo._id}
           isOpen={isModalOpen}
           onClose={() => setModalOpen(false)}
           Name="Create New Task"
