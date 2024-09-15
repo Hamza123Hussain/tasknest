@@ -7,7 +7,7 @@ export const ToggleTaskCompletion = (
   const todo = state.todo.find((t) => t._id === todoId)
 
   if (todo) {
-    const task = todo.Tasks.find((task) => task.ID === taskId)
+    const task = todo.Tasks.find((task) => task._id === taskId)
     if (task) {
       task.ISDone = !task.ISDone
     }
