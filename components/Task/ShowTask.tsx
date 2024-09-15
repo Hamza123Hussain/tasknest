@@ -24,7 +24,7 @@ const ShowTask = () => {
             No tasks available. Please add a new task to get started!
           </p>
         ) : (
-          todos.map((todo) => <MainCard todo={todo} key={todo._id} />)
+          todos.map((todo) => <MainCard key={todo._id} todo={todo} />)
         )}
       </div>
     </div>
