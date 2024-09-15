@@ -17,13 +17,10 @@ const ModalBody: React.FC<ModalBodyProps> = ({
     if (title.trim()) {
       try {
         if (onSubmitType === 'element') {
-          // Create the element in the backend
           const Data = await addElement(title, User.email)
-
           // Ensure the backend returns the element with an ID
           if (Data && Data._id) {
             const Payload = { id: Data._id, text: title, userEmail: User.email }
-            // Dispatch the element with the correct ID from the backend
             dispatch(NewElement(Payload))
             console.log('New Element created with ID:', Data._id)
           }
@@ -32,10 +29,7 @@ const ModalBody: React.FC<ModalBodyProps> = ({
             console.error('Task requires a valid todoId')
             return
           }
-          // Create the task in the backend
           const taskData = await addTask(todoId, title)
-
-          // Dispatch the new task to the Redux store
           if (taskData) {
             dispatch(NewTask({ todoId, taskText: title }))
             console.log('New Task added to todoId:', todoId)
@@ -48,7 +42,6 @@ const ModalBody: React.FC<ModalBodyProps> = ({
       }
     }
   }
-
   return (
     <>
       <div className="mb-4">
