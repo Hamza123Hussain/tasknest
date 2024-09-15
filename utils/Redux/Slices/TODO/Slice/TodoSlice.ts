@@ -6,7 +6,6 @@ import { AddTaskToTodo } from '../Functions/AddNewTask'
 import { ToggleTaskCompletion } from '../Functions/CompleteTask'
 import { RemoveTask } from '../Functions/RemoveATask'
 import { RemoveTodo } from '../Functions/RemoveTask'
-// Async action to fetch user elements from the API
 export const fetchUserElements = createAsyncThunk(
   'todo/fetchUserElements',
   async (userEmail: string, { rejectWithValue }) => {
