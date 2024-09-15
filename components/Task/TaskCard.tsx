@@ -14,17 +14,17 @@ const TaskCard = ({ task, ID }: { task: Task; ID: string }) => {
     dispatch(RemoveATask({ todoId: ID, taskID: task._id }))
     const response = await deleteTask(ID, task._id)
     if (response.message === 'Task deleted successfully') {
-      alert('item gone')
+      ;('item gone')
     }
   }
-  const handleComplete = async () => {
-    const updatedStatus = !task.ISDone
-    dispatch(CompleteTask({ todoId: ID, taskId: task._id }))
-    const response = await updateTask(ID, task._id, updatedStatus)
-    if (response.message === 'Task updated successfully') {
-      alert('Task status updated')
-    }
-  }
+  // const handleComplete = async () => {
+  //   const updatedStatus = !task.ISDone
+  //   dispatch(CompleteTask({ todoId: ID, taskId: task._id }))
+  //   const response = await updateTask(ID, task._id, updatedStatus)
+  //   if (response.message === 'Task updated successfully') {
+  //     ;('Task status updated')
+  //   }
+  // }
   return (
     <div
       className={`bg-white text-gray-800 p-3 sm:p-4 flex flex-col mb-2 rounded-md border ${
