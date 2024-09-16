@@ -17,7 +17,7 @@ const ShowUser = () => {
   return (
     <div className=" flex items-center gap-2 rounded-lg bg-[#FFC107] hover:bg-[#e0a800]  px-4 py-1   ">
       <li className="flex items-center space-x-1   ">
-        {User.imageUrl && (
+        {User?.imageUrl && (
           <Image
             src={User.imageUrl}
             alt={User.name}
@@ -26,7 +26,7 @@ const ShowUser = () => {
             className="rounded-full"
           />
         )}
-        <span className=" text-dark-gray px-4 py-2 rounded ">{User.name}</span>
+        <span className=" text-dark-gray px-4 py-2 rounded ">{User?.name}</span>
       </li>
       <button
         onClick={SignedOut}

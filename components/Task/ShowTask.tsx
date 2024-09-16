@@ -13,11 +13,11 @@ const ShowTask = () => {
 
   useEffect(() => {
     setloading(true)
-    if (User.email) {
+    if (User?.email) {
       dispatch(fetchUserElements(User.email)) // Fetch user elements when component mounts
       setloading(false)
     }
-  }, [dispatch, User.email])
+  }, [dispatch, User?.email])
   if (loading) {
     return <Loader />
   }
