@@ -21,7 +21,7 @@ export default function Login() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const Data = await login(formValues.email, formValues.password)
-    // console.log('User LOgged In', Data)
+    console.log('Login : ', Data)
     Dispatch(UserMade(Data))
   }
   return (
