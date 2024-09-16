@@ -15,18 +15,27 @@ export const UserSlice = createSlice({
   initialState: initialStateFromLocalStorage,
   reducers: {
     UserMade: (state, action) => {
-      state._id = action.payload._id
-      state.name = action.payload.name
-      state.createdAt = action.payload.createdAt
-      state.email = action.payload.email
-      state.imageUrl = action.payload.imageUrl
+      if (state) {
+        state._id = action.payload._id
+        state.name = action.payload.name
+        state.createdAt = action.payload.createdAt
+        state.email = action.payload.email
+        state.imageUrl = action.payload.imageUrl
 
-      // Save updated state to local storage
-      saveToLocalStorage(state)
+        // Save updated state to local storage
+        saveToLocalStorage(state)
+      }
     },
     clearUserData: (state) => {
-      // Clear state
-      Object.assign(state, initialState)
+      if (state) {
+        // Reset state to the initial empty values
+        state._id = initialState._id
+        state.name = initialState.name
+        state.createdAt = initialState.createdAt
+        state.email = initialState.email
+        state.imageUrl = initialState.imageUrl
+      }
+
       // Clear local storage
       localStorage.removeItem('UserData')
     },
