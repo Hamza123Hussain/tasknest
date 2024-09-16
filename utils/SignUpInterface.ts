@@ -4,7 +4,7 @@ export interface SignUpResponse {
   email: string
   imageUrl: string
 }
-export const ApiUrl = `http://localhost:8000/`
+export const ApiUrl = `https://task-nest-backend-umber.vercel.app/`
 
 export interface formvalues {
   username: string

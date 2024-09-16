@@ -1,13 +1,10 @@
 import { useDispatch } from 'react-redux'
-import { FaCheckCircle, FaRegCircle, FaTrash } from 'react-icons/fa'
+import { FaTrash } from 'react-icons/fa'
 import { deleteTask } from '@/functions/Task/DeleteTask'
-import {
-  CompleteTask,
-  RemoveATask,
-} from '@/utils/Redux/Slices/TODO/Slice/TodoSlice'
+import { RemoveATask } from '@/utils/Redux/Slices/TODO/Slice/TodoSlice'
 import { AppDispatch } from '@/utils/Redux/Store'
 import { Task } from '@/utils/TodoInterface'
-import { updateTask } from '@/functions/Task/UpdateTask' // Import the update function
+
 const TaskCard = ({ task, ID }: { task: Task; ID: string }) => {
   const dispatch = useDispatch<AppDispatch>()
   const handleDelete = async () => {
