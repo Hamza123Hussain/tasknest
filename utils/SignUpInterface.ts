@@ -14,9 +14,9 @@ export interface formvalues {
 }
 
 export interface UserData {
-  createdAt: string
-  email: string
-  imageUrl: string
-  name: string
-  _id: string
+  createdAt: string | null
+  email: string | null
+  imageUrl: string | null
+  name: string | null
+  _id: string | null
 }

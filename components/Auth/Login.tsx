@@ -22,7 +22,7 @@ export default function Login() {
     e.preventDefault()
     const Data = await login(formValues.email, formValues.password)
     console.log('Login : ', Data)
-    Dispatch(UserMade(Data))
+    if (Data) Dispatch(UserMade(Data))
   }
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F8F9FA]">

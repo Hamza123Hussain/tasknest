@@ -16,6 +16,7 @@ export const UserSlice = createSlice({
   reducers: {
     UserMade: (state, action) => {
       if (state) {
+        console.log(state)
         state._id = action.payload._id
         state.name = action.payload.name
         state.createdAt = action.payload.createdAt

@@ -20,7 +20,7 @@ const ShowUser = () => {
         {User?.imageUrl && (
           <Image
             src={User.imageUrl}
-            alt={User.name}
+            alt={'hbahb'}
             width={30}
             height={40}
             className="rounded-full"
