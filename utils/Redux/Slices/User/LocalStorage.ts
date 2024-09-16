@@ -1,12 +1,17 @@
 import { UserData } from '@/utils/SignUpInterface'
 
-// Function to get user data from local storage
-export const loadFromLocalStorage = (): UserData => {
-  const userData = localStorage.getItem('UserData')
-  return userData ? JSON.parse(userData) : {}
+export const loadFromLocalStorage = (): UserData | null => {
+  if (typeof window !== 'undefined') {
+    // Make sure the code only runs on the client-side
+    const userData = localStorage.getItem('UserData')
+    return userData ? JSON.parse(userData) : null
+  }
+  return null
 }
 
 // Function to save user data to local storage
 export const saveToLocalStorage = (user: UserData) => {
-  localStorage.setItem('UserData', JSON.stringify(user))
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('UserData', JSON.stringify(user))
+  }
 }
