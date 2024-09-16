@@ -7,7 +7,7 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname()
   const router = useRouter()
   const user = useSelector((state: RootState) => state.UserReducer)
-  const isLoggedIn = !!user._id
+  const isLoggedIn = !!user?._id
   useEffect(() => {
     const authPages = ['/login', '/signup', '/reset']
     if (isLoggedIn) {

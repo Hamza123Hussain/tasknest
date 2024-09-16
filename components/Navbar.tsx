@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
           <span>TaskNest</span>
         </a>
         <ul className="flex space-x-6 items-center">
-          {User._id ? (
+          {User?._id ? (
             <ShowUser />
           ) : (
             <button

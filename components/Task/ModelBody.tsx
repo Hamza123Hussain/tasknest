@@ -16,7 +16,7 @@ const ModalBody: React.FC<ModalBodyProps> = ({
   const handleAdd = async () => {
     if (title.trim()) {
       try {
-        if (onSubmitType === 'element') {
+        if (onSubmitType === 'element' && User) {
           const Data = await addElement(title, User.email)
           // Ensure the backend returns the element with an ID
           if (Data && Data._id) {
